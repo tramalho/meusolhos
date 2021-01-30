@@ -37,6 +37,15 @@ class ObjectsViewController: UIViewController {
     }
     
     @IBAction func analyse(_ sender: UIButton) {
+        
+        if let word = lbIdentifier.text?.components(separatedBy: ", ").first {
+            let text = "I am \(lbConfidence.text ?? "0") confident that this is a \(word)"
+            
+            let utterance = AVSpeechUtterance(string: text)
+            utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+            
+            AVSpeechSynthesizer().speak(utterance)
+        }
     }
 }
 
